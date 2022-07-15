@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Meu matador de monstro</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div class="panel"> 
+            <!-- (Health Display) -->
+            <div class="display-game">
+                <div class="player">
+                    <h1>Jogador</h1>
+                    <div class="life-bar-container">
+                        <div class="life-bar" :style="healthBarUpdate"></div>
+                    </div>
+                    <div class="score">
+                        <p>{{playerHealth}}%</p>
+                    </div>
+                </div>
+
+                <div class="player">
+                    <h1>Monstro</h1>
+                    <div class="life-bar-container">
+                        <div class="life-bar" :style="healthBarMonsterUpdate"></div>
+                    </div>
+                    <div class="score">
+                        <p>{{monsterHealth}}%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="panel" v-if="gameOver">
+            <!-- (Result Display) -->
+            <div class ="game-result" :class="{won: won, lose: !won}">
+                <h2>{{gameResult}}</h2>
+            </div>
+        </div>
+        <hr>
+        <div class="panel">
+            <!-- (Buttons Display) -->
+            <div class="button-panel">
+                <div v-if="!start">
+                    <button class="begin-button" @click="resetGame()">INICIAR NOVO JOGO</button>
+                </div>
+                <div v-else>
+                    <button class="attack-button" @click="attack()">ATAQUE</button>
+                    <button class="special-button" @click="specialAttack()">ATAQUE ESPECIAL</button>
+                    <button class="heal-button" @click="healPlayer()">CURAR</button>
+                    <button class="give-up-button" @click="giveUp()">DESISTIR</button>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="panel">
+            <!-- (Log Display) -->
+            <div class = "game-log" v-for="(log, index) in logs" :class="{ 'player-hit':index%2!=0, 'monster-hit':index%2==0  }">
+                <h3>{{log}}</h3>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
