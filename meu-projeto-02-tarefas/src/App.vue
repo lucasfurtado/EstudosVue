@@ -1,32 +1,45 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
+    <div class="container-content">
+      <TitleDiv/>
+      <ProgressBar/>
+      <TaskInput/>
+      <TaskCards/>
+    </div>
   </div>
 </template>
 
+<script>
+import TitleDiv from '@/components/TittleComponent.vue'
+import ProgressBar from "@/components/ProgressBar.vue"
+import TaskInput from "@/components/InputTask.vue"
+import TaskCards from '@/components/TaskCard.vue'
+
+
+export default{
+  name:"app",
+  components:{ TitleDiv, ProgressBar, TaskInput, TaskCards }
+}
+</script>
+
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+
+body{
+  background: linear-gradient(to right, #E5E5BE, #003973);
 }
 
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+#app{
+  border: solid 2px white;
+  color: white;
 }
+
+.container-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
 </style>
